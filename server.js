@@ -25,6 +25,7 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+let resObj1={};
 let resObj={};
 app.get("/api/:inputDate?",function(req,res)  {
 let inputDate=req.params.inputDate;
