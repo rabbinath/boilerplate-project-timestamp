@@ -25,23 +25,15 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-let resObj1={};
+
 let resObj={};
-app.get("/api/:inputDate?",function(req,res)  {
+app.get('/api/:inputDate',function(req,res)  {
 let inputDate=req.params.inputDate;
 if(inputDate.includes('-')){
   resObj['unix']=new Date(inputDate).getTime();
   resObj['utc']=new Date(inputDate).toUTCString();
-  
-}
-else
-{
-
-
-  
+}else{
   inputDate=parseInt(inputDate);
-
-
   resObj['unix']=new Date(inputDate).getTime();
   resObj['utc']=new Date(inputDate).toUTCString();
 }
@@ -50,15 +42,14 @@ if( !resObj['unix'] ||  !resObj['utc'])
   res.json({error:"Invalid Date"})
 }
 
-
 res.json(resObj);
 });
 
-app.get("/api/",(req,res)=>{
+app.get('/api',function(req,res){
 resObj['unix']=new Date().getTime();
 res.json(resObj);
 
-})
+});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
