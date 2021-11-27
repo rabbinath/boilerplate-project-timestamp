@@ -30,18 +30,33 @@ let resObj={};
 app.get('/api/:inputDate',function(req,res)  {
 let inputDate=req.params.inputDate;
 
-if(inputDate.includes('-')){
+var parsDate= new Date(inputDate);
+//var validDate=parsDate.isNullOrEmpty();
+
+//if(inputDate.includes('-')){
+  if(!isNaN(parsDate)){
   resObj['unix']=new Date(inputDate).getTime();
   resObj['utc']=new Date(inputDate).toUTCString();
-
-}elseif (!inputDate.includes(' '))
+ // resObj['parsDate']=parsDate;
+}
+else 
+{
+  if (isNaN(parsDate)){
+    inputDate=parseInt(inputDate);
+  resObj['unix']=new Date(inputDate).getTime();
+  resObj['utc']=new Date(inputDate).toUTCString();
+ // resObj['parsDate']=parsDate;
+  }
+else
 {
   inputDate=parseInt(inputDate);
   resObj['unix']=new Date(inputDate).getTime();
   resObj['utc']=new Date(inputDate).toUTCString();
+ // resObj['parsDate']=parsDate;
+}  
 
 }
-if( !resObj['unix'] ||  !resObj['utc'])
+if( !resObj['unix'] ||  !resObj['utc'] && parseInt(resObj['unix'])>100000 )
 {
   res.json({error:"Invalid Date"})
 }
