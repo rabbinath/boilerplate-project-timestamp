@@ -31,6 +31,7 @@ app.get("/api/:inputDate?",function(req,res)  {
 let inputDate=req.params.inputDate;
 if(inputDate.includes('-')){
   resObj['unix']=new Date(inputDate).getTime();
+  resObj['utc']=new Date(inputDate).toUTCString();
   res.json(resObj);
 }
   
