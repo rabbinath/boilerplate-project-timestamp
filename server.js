@@ -29,17 +29,17 @@ app.get("/api/hello", function (req, res) {
 let resObj={};
 app.get('/api/:inputDate',function(req,res)  {
 let inputDate=req.params.inputDate;
-var parsedDate=Date.parse(inputDate).getTime();
+
 if(inputDate.includes('-')){
   resObj['unix']=new Date(inputDate).getTime();
   resObj['utc']=new Date(inputDate).toUTCString();
-  resObj['pdate']=parsedDate;
+
 }elseif (!inputDate.includes(' '))
 {
   inputDate=parseInt(inputDate);
   resObj['unix']=new Date(inputDate).getTime();
   resObj['utc']=new Date(inputDate).toUTCString();
-  resObj['pdate']=parsedDate;
+
 }
 if( !resObj['unix'] ||  !resObj['utc'])
 {
