@@ -32,9 +32,14 @@ let inputDate=req.params.inputDate;
 if(inputDate.includes('-')){
   resObj['unix']=new Date(inputDate).getTime();
   resObj['utc']=new Date(inputDate).toUTCString();
-  res.json(resObj);
-}
   
+}
+else
+{
+  inputDate=parseInt(inputDate);
+  resObj['unix']==new Date(inputDate).getTime();
+}
+res.json(resObj);
 });
 
 
