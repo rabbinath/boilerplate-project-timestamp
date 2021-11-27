@@ -37,10 +37,7 @@ if(inputDate.includes('-')){
 else
 {
 
-  if (inputDate.isEmpty()){
-    inputDate=Date.now();
 
-  }
   
   inputDate=parseInt(inputDate);
 
@@ -57,6 +54,11 @@ if( !resObj['unix'] ||  !resObj['utc'])
 res.json(resObj);
 });
 
+app.get("/api/",(req,res)=>{
+resObj['unix']=new Date().getTime();
+res.json(resObj);
+
+})
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
