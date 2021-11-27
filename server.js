@@ -36,7 +36,15 @@ if(inputDate.includes('-')){
 }
 else
 {
+
+  if (inputDate.isEmpty()){
+    inputDate=Date.now();
+
+  }
+  
   inputDate=parseInt(inputDate);
+
+
   resObj['unix']=new Date(inputDate).getTime();
   resObj['utc']=new Date(inputDate).toUTCString();
 }
