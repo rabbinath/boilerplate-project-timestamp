@@ -39,6 +39,12 @@ else
   inputDate=parseInt(inputDate);
   resObj['unix']==new Date(inputDate).getTime();
 }
+if( !resObj['unix'] ||  !resObj['utc'])
+{
+  response.json({error:"Invalid Date"})
+}
+
+
 res.json(resObj);
 });
 
