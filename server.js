@@ -37,12 +37,12 @@ if(inputDate.includes('-')){
 else
 {
   inputDate=parseInt(inputDate);
-  resObj['unix']==new Date(inputDate).getTime();
+  resObj['unix']=new Date(inputDate).getTime();
   resObj['utc']=new Date(inputDate).toUTCString();
 }
 if( !resObj['unix'] ||  !resObj['utc'])
 {
-  response.json({error:"Invalid Date"})
+  res.json({error:"Invalid Date"})
 }
 
 
